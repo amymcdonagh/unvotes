@@ -27,4 +27,8 @@ nest(-country)
 # Unnest the data column to return it to its original form
 nested %>%
 unnest(data)
-
+library(purrr)
+# Perform a linear regression on each item in the data column
+by_year_country %>%
+nest(-country) %>%
+mutate(model = map(data, ~ lm(percent_yes ~ year, data = .)))
