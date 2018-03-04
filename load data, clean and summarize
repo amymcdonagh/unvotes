@@ -15,8 +15,6 @@ newdata%>%mutate (year = session + 1945)
 newdata %>%
 filter(vote <= 3) %>%
 mutate(year = session + 1945)
-library(countrycode)
-library(countrycode)
 install.packages("countrycode")
 library(countrycode)
 countrycode(100, "cown", "country.name")
@@ -32,3 +30,24 @@ filter(vote <= 3)%>%
 mutate(year = session + 1945,
 country = countrycode(ccode, "cown", "country.name"))
 votes_processed
+votes_processed %>%
+summarize(total = n())
+votes_processed %>%
+summarize (total = n(),
+percent_yes = mean (vote ==1))
+votes_processed %>%
+group_by(year) %>%
+summarize(total = n(),
+percent_yes = mean (vote ==1))
+by_country <- votes_processed %>%
+group_by(country) %>%
+summarize(total = n(),
+percent_yes = mean(vote == 1))
+by_country
+by_country %>%
+arrange(percent_yes)
+by_country %>%
+arrange(desc(percent_yes))
+by_country %>%
+arrange(percent_yes) %>%
+filter(total >= 100)
