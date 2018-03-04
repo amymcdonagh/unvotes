@@ -1,0 +1,34 @@
+load("~/Downloads/UNVotesPublished.RData")
+library(dplyr)
+View(x)
+drop <-c("member")
+x
+df$member <- NULL
+votes <- c("rcid", "session", "vote", "ccode")
+votes
+newdata <- mydata[votes]
+newdata <- x[votes]
+newdata
+newdata %>% filter (vote <= 3)
+newdata%>%filter (vote <= 3)
+newdata%>%mutate (year = session + 1945)
+newdata %>%
+filter(vote <= 3) %>%
+mutate(year = session + 1945)
+library(countrycode)
+library(countrycode)
+install.packages("countrycode")
+library(countrycode)
+countrycode(100, "cown", "country.name")
+votes_processed <- votes %>%
+filter(vote <= 3) %>%
+mutate(year = session + 1945,
+country = countrycode(ccode, "cown", "country.name"))
+newdata %>%
++     filter(vote <= 3) %>%
++     mutate(year = session + 1945, country = countrycode(ccode, "cown", "country.name"))
+votes_processed <- newdata %>%
+filter(vote <= 3)%>%
+mutate(year = session + 1945,
+country = countrycode(ccode, "cown", "country.name"))
+votes_processed
