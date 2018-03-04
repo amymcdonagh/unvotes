@@ -1,0 +1,67 @@
+library(ggplot2)
+ggplot(by_year, aes(year, percent_yes)) +
+geom_line()
+by_year <- votes_processed %>%
+group_by(year) %>%
+summarize(total = n(),
+percent_yes = mean(vote == 1))
+ggplot(by_year, aes(year, percent_yes)) +
++     geom_line()
+ggplot(by_year, aes(year, percent_yes))
++     geom_line()
+ggplot(by_year, aes(year, percent_yes)) +
+geom_line()
+ggplot(by_year, aes(year, percent_yes)) +
+geom_point() +
+geom_smooth()
+by_year_country <-votes_processed %>%
+group_by(year, country) %>%
+summarize(total = n(),
+percent_yes = mean (vote==1))
+by_year_country
+by_year_country %>%
+filter(country == "United States")
+by_year_country <- votes_processed %>%
+group_by(year, country) %>%
+summarize(total = n(),
+percent_yes = mean(vote == 1))
+by_year_country
+UK_by_year <- by_year_country %>%
+filter(country == "United Kingdom")
+ggplot(UK_by_year, aes(year, percent_yes)) +
+geom_line()
+countries <- c("United States", "United Kingdom",
+"France", "India")
+filtered_4_countries <- by_year_country %>%
+filter(country %in% countries)
+ggplot(filtered_4_countries, aes(year, percent_yes, color = country)) +
+geom_line()
+countries <- c("United States", "United Kingdom",
+"France", "Japan", "Brazil", "India")
+countries <- c("United States", "United Kingdom",
+"France", "Japan", "Brazil", "India")
+filtered_6_countries <- by_year_country %>%
+filter(country %in% countries)
+ggplot(filtered_6_countries, aes(year, percent_yes)) +
+geom_line() +
+facet_wrap(~ country)
+ggplot(filtered_6_countries, aes(year, percent_yes)) +
+geom_line() +
+facet_wrap(~ country, scales = "free_y")
+countries <- c("United States", "United Kingdom",
+"France", "Japan", "Brazil", "India",
+"New Zealand", "Australia", "Poland")
+filtered_countries <- by_year_country %>%
+filter(country %in% countries)
+ggplot(filtered_countries, aes(year, percent_yes)) +
+geom_line() +
+facet_wrap(~ country, scales = "free_y")
+# Percentage of yes votes from the US by year: US_by_year
+US_by_year <- by_year_country %>%
+filter(country == "United States")
+# Print the US_by_year data
+US_by_year
+# Perform a linear regression of percent_yes by year: US_fit
+US_fit <- lm(percent_yes ~ year, US_by_year)
+# Perform summary() on the US_fit object
+summary(US_fit)
