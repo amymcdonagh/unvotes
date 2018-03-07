@@ -1,3 +1,4 @@
+# Visualize data with ggplot, sample with varying country combinations
 
 # Load the ggplot2 package
 library(ggplot2)
