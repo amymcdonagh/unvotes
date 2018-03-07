@@ -1,4 +1,4 @@
-# The purpose of this step is to load, clean and filter the United Nations Dataset by utilizing the dplyr package and then 
+# The purpose of this step is to load, clean and filter the United Nations Dataset with the dplyr package and  
 # summarize into smaller more interpretable units. 
 
 # Download dataset from https://dataverse.harvard.edu/file.xhtml
