@@ -1,53 +1,75 @@
+# Download dataset from https://dataverse.harvard.edu/file.xhtml
 load("~/Downloads/UNVotesPublished.RData")
+
+# Load dplyr package
 library(dplyr)
+
+# Print dataset
 View(x)
+
+# Remove unnecessary rows
 drop <-c("member")
 x
 df$member <- NULL
 votes <- c("rcid", "session", "vote", "ccode")
-votes
-newdata <- mydata[votes]
 newdata <- x[votes]
 newdata
-newdata %>% filter (vote <= 3)
-newdata%>%filter (vote <= 3)
-newdata%>%mutate (year = session + 1945)
+
+# Filter for votes that are only "yes", "no" and "abstain"
+newdata%>%
+  filter (vote <= 3)
+
+# Add a year column
 newdata %>%
-filter(vote <= 3) %>%
-mutate(year = session + 1945)
+  filter(vote <= 3) %>%
+  mutate(year = session + 1945)
+
+# Install Country Code Package
 install.packages("countrycode")
 library(countrycode)
+
+# Convert country code
 countrycode(100, "cown", "country.name")
-votes_processed <- votes %>%
-filter(vote <= 3) %>%
-mutate(year = session + 1945,
-country = countrycode(ccode, "cown", "country.name"))
-newdata %>%
-+     filter(vote <= 3) %>%
-+     mutate(year = session + 1945, country = countrycode(ccode, "cown", "country.name"))
+
+# Add column within the mutate
 votes_processed <- newdata %>%
-filter(vote <= 3)%>%
-mutate(year = session + 1945,
-country = countrycode(ccode, "cown", "country.name"))
+  filter(vote <= 3)%>%
+  mutate(year = session + 1945,
+  country = countrycode(ccode, "cown", "country.name"))
+
+# Print new votes processed
 votes_processed
+
+# Find total and percent of "yes" votes
 votes_processed %>%
-summarize(total = n())
+  summarize(total = n(),
+            percent_yes = mean(vote == 1))
+
+# Summarize by year
 votes_processed %>%
-summarize (total = n(),
-percent_yes = mean (vote ==1))
-votes_processed %>%
-group_by(year) %>%
-summarize(total = n(),
-percent_yes = mean (vote ==1))
+  group_by(year) %>%
+  summarize(total = n(),
+            percent_yes = mean(vote == 1))
+            
+# Summarize by country: by_country
 by_country <- votes_processed %>%
-group_by(country) %>%
-summarize(total = n(),
-percent_yes = mean(vote == 1))
+  group_by(country) %>%
+  summarize(total = n(),
+            percent_yes = mean(vote == 1))
+
+# Print the by_country dataset
 by_country
+
+# Sort in ascending order of percent_yes
 by_country %>%
-arrange(percent_yes)
+  arrange(percent_yes)
+
+# Now sort in descending order
 by_country %>%
-arrange(desc(percent_yes))
-by_country %>%
-arrange(percent_yes) %>%
-filter(total >= 100)
+  arrange(desc(percent_yes))
+  
+# Define by_year
+by_year <- votes_processed %>%
+  group_by(year) %>%
+  summarize(total = n(),
+            percent_yes = mean(vote == 1))
