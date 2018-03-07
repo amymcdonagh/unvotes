@@ -1,3 +1,6 @@
+# The purpose of this step is to load, clean and filter the United Nations Dataset by utilizing the dplyr package and then 
+# summarize into smaller more interpretable units. 
+
 # Download dataset from https://dataverse.harvard.edu/file.xhtml
 load("~/Downloads/UNVotesPublished.RData")
 
