@@ -52,7 +52,7 @@ votes_processed %>%
 votes_processed %>%
   group_by(year) %>%
   summarize(total = n(),
-            percent_yes = mean(vote == 1))
+          percent_yes = mean(vote == 1))
             
 # Summarize by country: by_country
 by_country <- votes_processed %>%
