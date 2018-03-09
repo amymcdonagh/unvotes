@@ -1,59 +1,73 @@
 # Vector of six countries to examine
-> countries <- c("United States", "Afghanistan",
-+                "Israel", "Egypt", "Iraq", "Jordan")
-> 
-> # Filter by_year_country: filtered_6_countries
-> filtered_6_countries <- by_year_country %>%
-+     filter(country %in% countries)
-> 
-> # Line plot of % yes in six countries
-> ggplot(filtered_6_countries, aes(year, percent_yes, color = country)) +
-+     geom_line()
-> # Filtered by_year_country: filtered_6_countries
-> filtered_6_countries <- by_year_country %>%
-+     filter(country %in% countries)
+ countries <- c("United States", "Afghanistan",
+                "Israel", "Egypt", "Iraq", "Jordan")
+ 
+ # Filter by_year_country: filtered_6_countries
+ filtered_6_countries <- by_year_country %>%
+     filter(country %in% countries)
+ 
+ # Line plot of % yes in six countries
+ ggplot(filtered_6_countries, aes(year, percent_yes, color = country)) +
+     geom_line()
 
+ # Filtered by_year_country: filtered_6_countries
+ filtered_6_countries <- by_year_country %>%
+     filter(country %in% countries)
+     
+# Filter Afghanistan 
 afghan_by_country_year_topic <- by_country_year_topic %>%
-+     filter(country == "Afghanistan")
+     filter(country == "Afghanistan")
 
-> ggplot(afghan_by_country_year_topic, aes(year, percent_yes)) +
-+     geom_line()+
-+     facet_wrap(~topic)
-> egypt_by_country_year_topic <- by_country_year_topic %>%
-+     filter(country == "Egypt")
-> ggplot(egypt_by_country_year_topic, aes(year, percent_yes)) +
-+     geom_line()+
-+     facet_wrap(~topic)
-> iraq_by_country_year_topic <- by_country_year_topic %>%
-+     filter(country == "Iraq")
-> ggplot(iraq_by_country_year_topic, aes(year, percent_yes)) +
-+     geom_line()+
-+     facet_wrap(~topic)
-> israel_by_country_year_topic <- by_country_year_topic %>%
-+     filter(country == "Israel")
-> ggplot(israel_by_country_year_topic, aes(year, percent_yes)) +
-+     geom_line()+
-+     facet_wrap(~topic)
-> jordan_by_country_year_topic <- by_country_year_topic %>%
-+     filter(country == "Jordan")
-> ggplot(jordan_by_country_year_topic, aes(year, percent_yes)) +
-+     geom_line()+
-+     facet_wrap(~topic)
+# Line plot of Afghanistan by topic
+ ggplot(afghan_by_country_year_topic, aes(year, percent_yes)) +
+     geom_line()+
+     facet_wrap(~topic)
+     
+ # Filter Egypt    
+ egypt_by_country_year_topic <- by_country_year_topic %>%
+     filter(country == "Egypt")
+     
+ #Line plot of Egypt by topic    
+ ggplot(egypt_by_country_year_topic, aes(year, percent_yes)) +
+     geom_line()+
+     facet_wrap(~topic)
+     
+# Filter Iraq     
+ iraq_by_country_year_topic <- by_country_year_topic %>%
+     filter(country == "Iraq")
+ 
+ # Line plot Iraq by topic
+ ggplot(iraq_by_country_year_topic, aes(year, percent_yes)) +
+     geom_line()+
+     facet_wrap(~topic)
+ 
+ # Filter Israel 
+ israel_by_country_year_topic <- by_country_year_topic %>%
+     filter(country == "Israel")
+ 
+ # Line plot Israel by topic
+ ggplot(israel_by_country_year_topic, aes(year, percent_yes)) +
+     geom_line()+
+     facet_wrap(~topic)
+ 
+ # Filter Jordan
+ jordan_by_country_year_topic <- by_country_year_topic %>%
+     filter(country == "Jordan")
+ 
+ # Line plot Jordan by topic
+ ggplot(jordan_by_country_year_topic, aes(year, percent_yes)) +
+     geom_line()+
+     facet_wrap(~topic)
 
-
-
-
-
-
-
-
-
+# Define topics for 6 country trending
 translations <- c(me = "Palestinian conflict",
                   nu = "Nuclear weapons and nuclear material", 
                   di = "Arms control and disarmament",
                   hr = "Human rights",
                   co = "Colonialism", 
                   ec = "Economic development")
+
+# Line plot of top 6 countries by topic over time - yes votes
 votes_joined %>%
   gather(topic, value, me:ec) %>%
   filter(value == 1, country %in% c("United States", "Afghanistan", "Egypt", "Iraq", "Israel", "Jordan")) %>%
