@@ -1,4 +1,4 @@
-# Use statistical modeling to quantify trends across different countries to allow you to interpret them together. 
+# Use statistical modeling to quantify trends across different countries in order to interpret them together. 
 # Fit linear models to each country to compare and contrast outcomes
 
 # Broom is a newer package so it requires R to be updated 
