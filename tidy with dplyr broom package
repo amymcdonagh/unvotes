@@ -1,5 +1,6 @@
 # Use statistical modeling to quantify trends across different countries in order to interpret them together. 
 # Fit linear models to each country to compare and contrast outcomes
+# Code adapted from Datacamp Exploratory Data Analysis
 
 # Broom is a newer package so it requires R to be updated 
 library(devtools)
