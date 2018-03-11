@@ -1,4 +1,5 @@
 # Combine related datasets
+# Code adapted from Datacamp Exploratory Data Analysis
 
 # Load dplyr package
 library(dplyr)
